@@ -1,5 +1,7 @@
 {
     "cSpell.words": [
+        "dotenv",
         "webdav"
-    ]
+    ],
+    "python.analysis.typeCheckingMode": "basic"
 }
