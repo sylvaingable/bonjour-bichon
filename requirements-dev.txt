@@ -2,6 +2,8 @@
 #    uv pip compile requirements-dev.in -o requirements-dev.txt
 asttokens==2.4.1
     # via stack-data
+debugpy==1.8.2
+    # via -r requirements-dev.in
 decorator==5.1.1
     # via ipython
 executing==2.0.1
@@ -25,7 +27,9 @@ pure-eval==0.2.2
 pygments==2.18.0
     # via ipython
 six==1.16.0
-    # via asttokens
+    # via
+    #   -c requirements.txt
+    #   asttokens
 stack-data==0.6.3
     # via ipython
 traitlets==5.14.3
