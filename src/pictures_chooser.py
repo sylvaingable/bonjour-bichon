@@ -15,7 +15,9 @@ def choose(
     chosen_pics = tuple()
     while True:
         random_index = random.randint(0, pictures_count - 1)
-        if (random_pic := all_pictures[random_index]) not in sent_pictures:
+        if (
+            random_pic := all_pictures[random_index]
+        ) not in sent_pictures and random_pic not in chosen_pics:
             chosen_pics += (random_pic,)
         if len(chosen_pics) == count:
             return chosen_pics
