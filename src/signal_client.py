@@ -7,6 +7,8 @@ This module implements a Python wrapper around its REST API:
 https://bbernhard.github.io/signal-cli-rest-api/
 """
 
+from __future__ import annotations
+
 import base64
 from typing import Iterable
 from urllib.parse import urljoin
