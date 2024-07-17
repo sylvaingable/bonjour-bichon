@@ -2,17 +2,15 @@ from __future__ import annotations
 
 from typing import Iterable
 
-from type_defs import PicturePath
-
 from src import config
 
 
-def ls() -> tuple[PicturePath, ...]:
+def ls() -> tuple[str, ...]:
     with open(config.SENT_PICTURES_PATH, "r") as f:
         return tuple(f.read().splitlines())
 
 
-def append(paths: Iterable[PicturePath]) -> None:
+def append(paths: Iterable[str]) -> None:
     with open(config.SENT_PICTURES_PATH, "a+") as f:
         f.writelines(path + "\n" for path in paths)
 

@@ -1,13 +1,11 @@
 import random
 
-from type_defs import PicturePath
-
 
 def choose(
-    sent_pictures: tuple[PicturePath, ...],
-    all_pictures: tuple[PicturePath, ...],
+    sent_pictures: tuple[str, ...],
+    all_pictures: tuple[str, ...],
     count: int = 3,
-) -> tuple[PicturePath, ...]:
+) -> tuple[str, ...]:
     """Choose randomly count pictures among all pictures that are not in sent pictures"""
     pictures_count = len(all_pictures)
     chosen_pics = tuple()

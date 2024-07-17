@@ -1,1 +1,0 @@
-PicturePath = str
