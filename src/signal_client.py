@@ -22,14 +22,14 @@ class SignalError(Exception): ...
 
 
 def send_message(
-    text: str | None = None, images: Iterable[bytes] | None = None
+    text: str | None = None, pictures: Iterable[bytes] | None = None
 ) -> None:
     body = {"number": config.SIGNAL_SENDER, "recipients": config.SIGNAL_RECIPIENTS}
     if text is not None:
         body["message"] = text
-    if images is not None:
+    if pictures is not None:
         body["base64_attachments"] = [
-            base64.b64encode(image).decode() for image in images
+            base64.b64encode(pic).decode() for pic in pictures
         ]
     try:
         response = httpx.post(

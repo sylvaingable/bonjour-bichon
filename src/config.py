@@ -4,6 +4,9 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+HISTORY_DAYS_COUNT = int(os.getenv("HISTORY_DAYS_COUNT"))  # type: ignore
+PICTURES_PER_DAY_COUNT = int(os.getenv("PICTURES_PER_DAY_COUNT"))  # type: ignore
+PICTURES_MESSAGE = str(os.getenv("PICTURES_MESSAGE"))
 NEXTCLOUD_WEBDAV_URL = str(os.getenv("NEXTCLOUD_WEBDAV_URL"))
 NEXTCLOUD_USERNAME = str(os.getenv("NEXTCLOUD_USERNAME"))
 NEXTCLOUD_PASSWORD = str(os.getenv("NEXTCLOUD_PASSWORD"))

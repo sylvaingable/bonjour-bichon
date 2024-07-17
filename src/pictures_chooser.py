@@ -1,10 +1,12 @@
 import random
 
+from src import config
+
 
 def choose(
     sent_pictures: tuple[str, ...],
     all_pictures: tuple[str, ...],
-    count: int = 3,
+    count: int = config.PICTURES_PER_DAY_COUNT,
 ) -> tuple[str, ...]:
     """Choose randomly count pictures among all pictures that are not in sent pictures"""
     pictures_count = len(all_pictures)

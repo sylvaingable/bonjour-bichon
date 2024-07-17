@@ -1,6 +1,7 @@
 {
     "cSpell.words": [
         "dotenv",
+        "nextcloud",
         "webdav"
     ],
     "python.analysis.typeCheckingMode": "basic"
