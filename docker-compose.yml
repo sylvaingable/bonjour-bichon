@@ -2,12 +2,12 @@ services:
   signal-cli-rest-api:
     image: bbernhard/signal-cli-rest-api:latest
     environment:
-      - MODE=native #supported modes: json-rpc, native, normal
-      - AUTO_RECEIVE_SCHEDULE=0 22 * * * #enable this parameter on demand (see description below)
+      - MODE=native # Supported modes: json-rpc, native, normal
+      - AUTO_RECEIVE_SCHEDULE=0 22 * * * # Required in normal/native mode
     ports:
-      - "127.0.0.1:8888:8080" #map docker port 8080 to host port 8080.
+      - "127.0.0.1:8888:8080"
     volumes:
-      - "./signal-api:/home/.local/share/signal-cli" #map "signal-cli-config" folder on host system into docker container. the folder contains the password and cryptographic keys when a new number is registered
+      - "./signal-api:/home/.local/share/signal-cli" # Map "signal-cli-config" folder on host system into docker container. the folder contains the password and cryptographic keys when a new number is registered
     restart: unless-stopped
 
   bonjour-bichon:
