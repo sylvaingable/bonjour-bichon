@@ -39,4 +39,6 @@ def send_message(
         )
         response.raise_for_status()
     except httpx.HTTPError as exc:
+        if response := locals().get("response"):
+            print(f"Cannot send message: {response.text}")
         raise SignalError("Cannot send message") from exc
