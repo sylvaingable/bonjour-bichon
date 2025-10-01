@@ -16,6 +16,8 @@ idna==3.7
     # via
     #   anyio
     #   httpx
+pillow==11.3.0
+    # via -r requirements.in
 python-dateutil==2.9.0.post0
     # via webdav4
 python-dotenv==1.0.1

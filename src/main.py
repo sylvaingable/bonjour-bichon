@@ -1,4 +1,11 @@
-from . import config, nextcloud_client, pictures_chooser, sent_pictures, signal_client
+from . import (
+    config,
+    image_processor,
+    nextcloud_client,
+    pictures_chooser,
+    sent_pictures,
+    signal_client,
+)
 
 
 def send_random_pictures():
@@ -12,8 +19,12 @@ def send_random_pictures():
     )
     print("Retrieving pictures binary content")
     pictures = tuple(nextcloud_client.read_picture(path) for path in chosen_paths)
+    print("Resizing pictures")
+    resized_pictures = tuple(
+        image_processor.resize_image(picture) for picture in pictures
+    )
     print("Sending pictures")
-    signal_client.send_message(text=config.PICTURES_MESSAGE, pictures=pictures)
+    signal_client.send_message(text=config.PICTURES_MESSAGE, pictures=resized_pictures)
     print("Persisting sent pictures")
     sent_pictures.append(chosen_paths)
     print("Truncating sent pictures journal")
