@@ -9,3 +9,14 @@ services:
     volumes:
       - "./signal-api:/home/.local/share/signal-cli" #map "signal-cli-config" folder on host system into docker container. the folder contains the password and cryptographic keys when a new number is registered
     restart: unless-stopped
+
+  bonjour-bichon:
+    build: .
+    env_file:
+      - .env
+    volumes:
+      - ./sent_pictures.txt:/app/sent_pictures.txt
+    depends_on:
+      - signal-cli-rest-api
+    profiles:
+      - manual  # Prevents this service from starting with docker-compose up

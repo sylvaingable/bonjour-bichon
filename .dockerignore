@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+
+# Environment
+.env
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Development tools
+justfile
+requirements-dev.in
+requirements-dev.txt
+
+# Application state (will be mounted as volume)
+sent_pictures.txt
+
+# Signal API data
+signal-api/
