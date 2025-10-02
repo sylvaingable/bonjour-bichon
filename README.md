@@ -1,6 +1,6 @@
 # Bonjour Bichon 📸
 
-Automatically send random photos from your Nextcloud to Signal contacts. Features duplicate sending prevention within a configurable time period and automatic image resizing for optimal mobile viewing.
+Automatically send random photos from your Nextcloud to a Signal group. Features duplicate sending prevention within a configurable time period and automatic image resizing for optimal mobile viewing.
 
 ## Prerequisites
 
@@ -13,7 +13,7 @@ Automatically send random photos from your Nextcloud to Signal contacts. Feature
 ### 1. Clone and Setup
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/sylvaingable/bonjour-bichon
 cd bonjour-bichon
 cp .env.sample .env
 ```
@@ -41,9 +41,9 @@ NEXTCLOUD_PHOTOS_PATH=/files/your-username/Photos/
 # Signal settings (using signal-cli-rest-api)
 SIGNAL_BASE_URL=http://signal-cli-rest-api:8080
 SIGNAL_SENDER=+1234567890
-SIGNAL_RECIPIENTS=+1987654321,+1122334455
+SIGNAL_GROUP_RECIPIENT='Family group"
 
-# File to track sent pictures (leave as default)
+# File to track sent pictures (update docker compose file accordingly if you need to change it)
 SENT_PICTURES_PATH=./sent_pictures.txt
 ```
 

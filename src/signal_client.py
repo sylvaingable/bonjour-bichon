@@ -26,7 +26,8 @@ class SignalError(Exception): ...
 def send_message(
     text: str | None = None, pictures: Iterable[bytes] | None = None
 ) -> None:
-    body = {"number": config.SIGNAL_SENDER, "recipients": config.SIGNAL_RECIPIENTS}
+    group_id = fetch_group_id(config.SIGNAL_GROUP_RECIPIENT)
+    body = {"number": config.SIGNAL_SENDER, "recipients": [group_id]}
     if text is not None:
         body["message"] = text
     if pictures is not None:
@@ -42,3 +43,22 @@ def send_message(
         if response := locals().get("response"):
             print(f"Cannot send message: {response.text}")
         raise SignalError("Cannot send message") from exc
+
+
+def fetch_group_id(group_name: str) -> str:
+    """Fetch the Signal group ID from its name"""
+    try:
+        response = httpx.get(
+            urljoin(config.SIGNAL_BASE_URL, f"/v1/groups/{config.SIGNAL_SENDER}"),
+            timeout=120,
+        )
+        response.raise_for_status()
+        groups = response.json()
+        for group in groups:
+            if group["name"] == group_name:
+                return group["id"]
+        raise SignalError(f"Group '{group_name}' not found")
+    except httpx.HTTPError as exc:
+        if response := locals().get("response"):
+            print(f"Cannot fetch groups: {response.text}")
+        raise SignalError("Cannot fetch groups") from exc

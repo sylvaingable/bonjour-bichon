@@ -17,7 +17,7 @@ def send_random_pictures():
     chosen_paths = pictures_chooser.choose(
         sent_pictures=sent_pictures_paths, all_pictures=pictures_paths
     )
-    print("Retrieving pictures binary content")
+    print("Retrieving pictures content")
     pictures = tuple(nextcloud_client.read_picture(path) for path in chosen_paths)
     print("Resizing pictures")
     resized_pictures = tuple(
