@@ -51,13 +51,19 @@ SENT_PICTURES_PATH=./sent_pictures.txt
 
 The project uses [signal-cli-rest-api](https://github.com/bbernhard/signal-cli-rest-api) to send messages. You need to [link it to your phone number](https://github.com/bbernhard/signal-cli-rest-api?tab=readme-ov-file#getting-started).
 
-**First time setup:**
 ```bash
 # Start the Signal API service
 docker-compose up -d signal-cli-rest-api
+```
 
-# Follow the signal-cli-rest-api documentation to register and link your phone number
-# This typically involves QR code linking or SMS verification
+`signal-cli-rest-api` suggests to periodically receive messages from the Signal servers by setting an `AUTO_RECEIVE_SCHEDULE` environment file in the docker compose file but this seems to fail if it takes longer than 2 minutes.
+```
+signal-cli-rest-api-1  | time="2025-10-06T22:02:00Z" level=error msg="AUTO_RECEIVE_SCHEDULE: Couldn't call receive for number +<REDACTED>: {process killed as timeout reached}"
+```
+
+As a workaround in can execute the receive command directly in the docker container and schedule it with a cron or systemd timer (see next section):
+```
+docker compose exec signal-cli-rest-api bash -c 'su signal-api -c "signal-cli --config /home/.local/share/signal-cli -a +NUMBER receive"'
 ```
 
 ### 4. Build and Test
@@ -80,7 +86,7 @@ Add to your crontab to run daily at 9 AM:
 crontab -e
 
 # Add this line (adjust path to your project directory)
-0 9 * * * cd /path/to/bonjour-bichon && ocker-compose run --rm bonjour-bichon
+0 9 * * * cd /path/to/bonjour-bichon && docker-compose run --rm bonjour-bichon
 ```
 
 ### Automated with Systemd
